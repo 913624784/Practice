@@ -12,18 +12,52 @@ public class EightSort {
     int array[] = {1, 23, 56, 78, 98, 76, 4, 100, 24};
 
     @Test
-    public void testsort() {
+    public void testselectsort() {
         System.out.println("排序前：" + Arrays.toString(array));
+        selectsort(array);
+    }
 
-//        selectsort(array);
-//        maopaosort(array);
-//        insertsort(array);
-//        shellsort(array);
-//        jishusort(array);
-//        heapsort(array);
-//        mergesort(array);
-//        quicksort(array,0,array.length-1);
-//        System.out.println("快排：" + Arrays.toString(array));
+    @Test
+    public void testmaopaosort() {
+        System.out.println("排序前：" + Arrays.toString(array));
+        maopaosort(array);
+    }
+
+    @Test
+    public void testinsertsort() {
+        System.out.println("排序前：" + Arrays.toString(array));
+        insertsort(array);
+    }
+
+    @Test
+    public void testshellsort() {
+        System.out.println("排序前：" + Arrays.toString(array));
+        shellsort(array);
+    }
+
+    @Test
+    public void testjishusort() {
+        System.out.println("排序前：" + Arrays.toString(array));
+        jishusort(array);
+    }
+
+    @Test
+    public void testheapsort() {
+        System.out.println("排序前：" + Arrays.toString(array));
+        heapsort(array);
+    }
+
+    @Test
+    public void testmergesort() {
+        System.out.println("排序前：" + Arrays.toString(array));
+        mergesort(array,0,array.length-1);
+    }
+
+    @Test
+    public void testquicksort() {
+        System.out.println("排序前：" + Arrays.toString(array));
+        quicksort(array,0,array.length-1);
+        System.out.println("快排：" + Arrays.toString(array)+"\n");
     }
 
     /**
@@ -43,7 +77,7 @@ public class EightSort {
             }
             swap(arr, min, i);
         }
-        System.out.println("选择：" + Arrays.toString(arr));
+        System.out.println("选择：" + Arrays.toString(arr)+"\n");
     }
 
     /**
@@ -65,7 +99,7 @@ public class EightSort {
                 }
             }
         }
-        System.out.println("冒泡：" + Arrays.toString(arr));
+        System.out.println("冒泡：" + Arrays.toString(arr)+"\n");
     }
 
     /**
@@ -80,7 +114,7 @@ public class EightSort {
                 swap(arr, j, j - 1);
             }
         }
-        System.out.println("插入：" + Arrays.toString(arr));
+        System.out.println("插入：" + Arrays.toString(arr)+"\n");
     }
 
     /**
@@ -102,7 +136,7 @@ public class EightSort {
             }
             h = h / 3;
         }
-        System.out.println("希尔：" + Arrays.toString(arr));
+        System.out.println("希尔：" + Arrays.toString(arr)+"\n");
     }
 
     /**
@@ -139,19 +173,16 @@ public class EightSort {
     }
 
 
-    public void mergesort(int arr[],int left,int right) {
+    public void mergesort(int arr[], int left, int right) {
 
-        System.out.println("归并：" + Arrays.toString(arr));
     }
 
     public void jishusort(int arr[]) {
 
-        System.out.println("基数：" + Arrays.toString(arr));
     }
 
     public void heapsort(int arr[]) {
 
-        System.out.println("堆排：" + Arrays.toString(arr));
     }
 
 
