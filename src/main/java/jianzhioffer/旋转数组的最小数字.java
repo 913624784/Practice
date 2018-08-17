@@ -1,18 +1,16 @@
 package jianzhioffer;
 
 public class 旋转数组的最小数字 {
-    public int minNumberInRotateArray(int [] array) {
-        int low = 0 ; int high = array.length - 1;
-        while(low < high){
-            int mid = low + (high - low) / 2;
-            if(array[mid] > array[high]){
-                low = mid + 1;
-            }else if(array[mid] == array[high]){
-                high = high - 1;
-            }else{
-                high = mid;
+    public int findMin(int[] nums) {
+        int l = 0, h = nums.length - 1;
+        while (l < h) {
+            int m = l + (h - l) / 2;
+            if (nums[m] <= nums[h]) {
+                h = m;
+            } else {
+                l = m + 1;
             }
         }
-        return array[low];
+        return nums[l];
     }
 }

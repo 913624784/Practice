@@ -94,7 +94,7 @@ public class BinaryTree {
         if (root==null){
             return lists;
         }
-        Queue<Node> queue=new LinkedList<Node>();
+        Queue<Node> queue=new LinkedList();
         queue.offer(root);
         while (!queue.isEmpty()){
             Node tree=queue.poll();
@@ -113,7 +113,7 @@ public class BinaryTree {
         if (root==null){
             return lists;
         }
-        Stack<Node> stack=new Stack<Node>();
+        Stack<Node> stack=new Stack();
         stack.push(root);
         while (!stack.isEmpty()){
             Node tree=stack.pop();
@@ -127,6 +127,11 @@ public class BinaryTree {
         }
         return lists;
     }
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         System.out.println("根：" + binaryTree.root.toString());
@@ -136,7 +141,10 @@ public class BinaryTree {
         for (Node node : binaryTree.result()) {
             System.out.print(node.data);
         }
+        System.out.println();
+        TreeNode treeNode=new TreeNode(1);
         System.out.println("深度：" + binaryTree.getdeep(binaryTree.root));
+        System.out.println("深度：" + binaryTree.maxDepth(treeNode));
         System.out.println("广度优先："+binaryTree.wideprint());
         System.out.println("深度优先："+binaryTree.deepprint());
     }

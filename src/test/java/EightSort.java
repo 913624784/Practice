@@ -50,7 +50,8 @@ public class EightSort {
     @Test
     public void testmergesort() {
         System.out.println("排序前：" + Arrays.toString(array));
-        mergesort(array,0,array.length-1);
+        mergesort(array,0,array.length-1,new int[array.length]);
+        System.out.println(Arrays.toString(array));
     }
 
     @Test
@@ -172,9 +173,35 @@ public class EightSort {
 
     }
 
-
-    public void mergesort(int arr[], int left, int right) {
-
+    public void mergesort(int[] arr,int left,int right,int []temp) {
+        if (left<right){
+            int mid=left+(right-left)/2;
+            mergesort(arr,left,mid,temp);
+            mergesort(arr,mid+1,right,temp);
+            merge(arr,left,mid,right,temp);
+        }
+    }
+    public void merge(int[] arr,int left,int mid,int right,int []temp){
+        int i = left;
+        int j = mid+1;
+        int t = 0;
+        while (i<=mid && j<=right){
+            if(arr[i]<=arr[j]){
+                temp[t++] = arr[i++];
+            }else {
+                temp[t++] = arr[j++];
+            }
+        }
+        while(i<=mid){
+            temp[t++] = arr[i++];
+        }
+        while(j<=right){
+            temp[t++] = arr[j++];
+        }
+        t = 0;
+        while(left <= right){
+            arr[left++] = temp[t++];
+        }
     }
 
     public void jishusort(int arr[]) {

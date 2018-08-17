@@ -1,6 +1,10 @@
 package XXX;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.PriorityQueue;
 
 public class Eight {
     public void swap(int arr[],int i,int j){
@@ -11,13 +15,26 @@ public class Eight {
 
     public static void main(String[] args) {
         int arr[]={1,34,5,6,77,89,4,32,3};
+        List list=new ArrayList();
         System.out.println(Arrays.toString(arr));
         Eight eight=new Eight();
 //        eight.sort(arr,0,arr.length-1,new int[arr.length]);
-        eight.heapSort(arr);
-        System.out.println(Arrays.toString(arr));
+        for (int i=0;i<arr.length;i++)
+        list.add(eight.findKthLargest(arr,arr.length-1));
+        System.out.println(Arrays.toString(list.toArray()));
+//        eight.heapSort(arr);
+//        System.out.println(Arrays.toString(arr));
 //        eight.quick(arr,0,arr.length-1);
 //        System.out.println(eight.serach(arr,6));
+    }
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue(); // 小顶堆
+        for (int val : nums) {
+            pq.add(val);
+            if (pq.size() > k) // 维护堆的大小为 K
+                pq.poll();
+        }
+        return pq.peek();
     }
     public  void heapSort(int[] a) {
         int i;
