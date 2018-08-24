@@ -1,30 +1,29 @@
 package leetcode;
 
 public class 二分查找 {
-    public int binarySearch(int[] nums, int key) {
-        int l = 0, h = nums.length - 1;
-        while (l <= h) {
-            int m = l + (h - l) / 2;
-            if (nums[m] == key) {
-                return m;
-            } else if (nums[m] > key) {
-                h = m - 1;
-            } else {
-                l = m + 1;
-            }
-        }
-        return -1;
-    }
-    public int binarySearchdouble(int[] nums, int key) {
-        int l = 0, h = nums.length - 1;
-        while (l < h) {
-            int m = l + (h - l) / 2;
-            if (nums[m] >= key) {
-                h = m;
-            } else {
-                l = m + 1;
-            }
-        }
-        return l;
-    }
+   public  int search(int arr[],int target){
+       int i=0,j=arr.length-1;
+       while (i<=j){
+           int mid=i+(j-i)/2;
+           if (arr[mid]==target)
+               return mid;
+           else if (arr[mid]>target)
+               j=mid-1;
+           else
+               i=mid+1;
+
+       }
+       return -1;
+   }
+   public static int search2(int arr[],int target){
+       int i=0,j=arr.length;
+       while (i<j){
+           int mid=i+(j-i)/2;
+           if (arr[mid]>=target)
+               j=mid;
+           else
+               i=mid+1;
+       }
+       return i;
+   }
 }
