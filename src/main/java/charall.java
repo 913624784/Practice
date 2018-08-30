@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class charall {
     public static int getValue(String operation) {
@@ -26,48 +27,65 @@ public class charall {
 
     public static void find(String str) {
         System.out.println("input: " + str);
-        char c[] = str.toCharArray();
-        Stack yunsuan = new Stack<Character>();
-        Stack number = new Stack<Character>();
-        for (int i = 0; i <c.length; i++) {
-            if (c[i] == '+' || c[i] == '-' || c[i] == '*' || c[i] == '/'||c[i] == '('||c[i] == ')') {
-                yunsuan.push(c[i]);
+        Stack<String> yunsuan = new Stack<>();
+        Stack<String> number = new Stack<>();
+        StringTokenizer token = new StringTokenizer(str, "[+ - * / ( )]", true);
+        while (token.hasMoreElements()) {
+            String s = token.nextToken();
+            if (s.matches("\\d+")) {
+                number.push(s);
+            } else if (yunsuan.isEmpty() || s.equals("(")) {
+                yunsuan.push(s);
             } else {
-                number.push(c[i]);
+                if (s.equals(")")) {
+                    while (!yunsuan.peek().equals("(")) {
+                        int result;
+                        int a = Integer.valueOf(number.pop());
+                        int b = Integer.valueOf(number.pop());
+                        result = calResult(yunsuan.pop(), b, a);
+                        number.push(result + "");
+                    }
+                    yunsuan.pop();
+                } else {
+                    if (getValue(s + "") > getValue(yunsuan.peek() + "")) {
+                        yunsuan.push(s);
+                    } else {
+                        int result;
+                        int a = Integer.valueOf(number.pop());
+                        int b = Integer.valueOf(number.pop());
+                        result = calResult(yunsuan.pop(), b, a);
+                        number.push(result + "");
+                        yunsuan.push(s);
+                    }
+                }
             }
         }
-        while (!yunsuan.isEmpty())
-            System.out.print(yunsuan.pop()+" ");
-        System.out.println();
-        while (!number.isEmpty())
-        System.out.print(number.pop()+" ");
-        int result = 0;
         while (!yunsuan.isEmpty()) {
-            if (yunsuan.peek().equals('(')||yunsuan.peek().equals(')')){
-                yunsuan.pop();
-            }
-            if (yunsuan.peek().equals('+')) {
-                yunsuan.pop();
-                result = Integer.parseInt(number.pop().toString()) + Integer.parseInt(number.pop().toString());
-                number.push(result);
-            } else if (yunsuan.peek().equals('-')) {
-                yunsuan.pop();
-                result = Integer.parseInt(number.pop().toString()) - Integer.parseInt(number.pop().toString());
-                number.push(result);
-            } else if (yunsuan.peek().equals('*')) {
-                yunsuan.pop();
-                result = Integer.parseInt(number.pop().toString()) * Integer.parseInt(number.pop().toString());
-                number.push(result);
-            } else if (yunsuan.peek().equals('/')) {
-                yunsuan.pop();
-                result = Integer.parseInt(number.pop().toString()) / Integer.parseInt(number.pop().toString());
-                number.push(result);
-            } else
-                return;
+            int result;
+            int a = Integer.valueOf(number.pop());
+            int b = Integer.valueOf(number.pop());
+            result = calResult(yunsuan.pop(), b, a);
+            number.push(result + "");
         }
-        System.out.println("result: " + number.peek());
-
+        System.out.println("result: " + number.pop());
     }
+
+    public static int calResult(String c, int x, int y) {
+        switch (c) {
+            case "+":
+                return x + y;
+            case "-":
+                return x - y;
+            case "*":
+                return x * y;
+            case "/":
+                return x / y;
+            default:
+                return -1;
+        }
+    }
+
+
     public static List<String> toInfixExpression(String s) {
         List<String> ls = new ArrayList<String>();//存储中序表达式
         int i = 0;
@@ -87,11 +105,12 @@ public class charall {
             }
 
         } while (i < s.length());
+
         return ls;
     }
+
     public static List<String> parseSuffixExpression(List<String> ls) {
-        Stack<String> s1=new Stack<String>();
-        Stack<String> s2=new Stack<String>();
+        Stack<String> s1 = new Stack<String>();//运算符栈
         List<String> lss = new ArrayList<String>();
         for (String ss : ls) {
             if (ss.matches("\\d+")) {
@@ -115,15 +134,17 @@ public class charall {
         }
         return lss;
     }
+
     public static int calculate(List<String> ls) {
-        Stack<String> s=new Stack<String>();
+        Stack<String> s = new Stack<String>();//数字栈
         for (String str : ls) {
             if (str.matches("\\d+")) {
                 s.push(str);
             } else {
                 int b = Integer.parseInt(s.pop());
                 int a = Integer.parseInt(s.pop());
-                int result=0;
+                int result = 0;
+                //判断list中的符号
                 if (str.equals("+")) {
                     result = a + b;
                 } else if (str.equals("-")) {
@@ -138,16 +159,11 @@ public class charall {
         }
         return Integer.parseInt(s.pop());
     }
+
     public static void main(String[] args) {
-        System.out.println(parseSuffixExpression(toInfixExpression("1+(30*5)+(40*2)")));
-        List list=toInfixExpression("1+(30*5)+(40*2)/20");
-        List rpn=parseSuffixExpression(list);
-
-        System.out.println("计算结果:"+ calculate(rpn));
-        char a='0';
-        char z='9';
-        System.out.println((int)a);
-        System.out.println((int)z);
+        String s = "(((3+4)*5)/7-6+1*5+1000)*2";
+        find(s);
     }
-
 }
+
+
