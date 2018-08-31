@@ -36,27 +36,25 @@ public class charall {
                 number.push(s);
             } else if (yunsuan.isEmpty() || s.equals("(")) {
                 yunsuan.push(s);
+            } else if (s.equals(")")) {
+                while (!yunsuan.peek().equals("(")) {
+                    int result;
+                    int a = Integer.valueOf(number.pop());
+                    int b = Integer.valueOf(number.pop());
+                    result = calResult(yunsuan.pop(), b, a);
+                    number.push(result + "");
+                }
+                yunsuan.pop();
             } else {
-                if (s.equals(")")) {
-                    while (!yunsuan.peek().equals("(")) {
-                        int result;
-                        int a = Integer.valueOf(number.pop());
-                        int b = Integer.valueOf(number.pop());
-                        result = calResult(yunsuan.pop(), b, a);
-                        number.push(result + "");
-                    }
-                    yunsuan.pop();
+                if (getValue(s + "") > getValue(yunsuan.peek() + "")) {
+                    yunsuan.push(s);
                 } else {
-                    if (getValue(s + "") > getValue(yunsuan.peek() + "")) {
-                        yunsuan.push(s);
-                    } else {
-                        int result;
-                        int a = Integer.valueOf(number.pop());
-                        int b = Integer.valueOf(number.pop());
-                        result = calResult(yunsuan.pop(), b, a);
-                        number.push(result + "");
-                        yunsuan.push(s);
-                    }
+                    int result;
+                    int a = Integer.valueOf(number.pop());
+                    int b = Integer.valueOf(number.pop());
+                    result = calResult(yunsuan.pop(), b, a);
+                    number.push(result + "");
+                    yunsuan.push(s);
                 }
             }
         }
@@ -162,7 +160,9 @@ public class charall {
 
     public static void main(String[] args) {
         String s = "(((3+4)*5)/7-6+1*5+1000)*2";
+        String ss="3+4*5+9/3+5+9";
         find(s);
+        find(ss);
     }
 }
 
