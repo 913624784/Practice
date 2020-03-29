@@ -1,6 +1,6 @@
 public class J_2ReplaceSpace {
     public static String replaceSpace(StringBuffer str) {
-        if(str==null){
+        if (str == null) {
             return null;
         }
         StringBuilder newStr = new StringBuilder();

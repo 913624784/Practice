@@ -1,13 +1,12 @@
 /**
- *    public class ListNode {
- *        int val;
- *        ListNode next = null;
- *
- *        ListNode(int val) {
- *            this.val = val;
- *        }
- *    }
- *
+ * public class ListNode {
+ * int val;
+ * ListNode next = null;
+ * <p>
+ * ListNode(int val) {
+ * this.val = val;
+ * }
+ * }
  */
 
 
@@ -16,13 +15,13 @@ import java.util.Stack;
 
 public class J_3PrintLinkedList {
     public static ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-        Stack<Integer> n=new Stack<Integer>();
-        while(listNode!=null){
+        Stack<Integer> n = new Stack<Integer>();
+        while (listNode != null) {
             n.push(listNode.val);
-            listNode=listNode.next;
+            listNode = listNode.next;
         }
-        ArrayList<Integer> m=new ArrayList<Integer>();
-        while(!n.isEmpty()){
+        ArrayList<Integer> m = new ArrayList<Integer>();
+        while (!n.isEmpty()) {
             m.add(n.pop());
         }
         return m;

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class SelectSort {
     //时间复杂度都是n^2 不稳定
     public static void sort(int array[]) {
-        int count=0;
+        int count = 0;
         //从无序区间挑选出最小值，挑选n-1次
         for (int i = 0; i < array.length - 1; i++) {
             //i下标左边是有序的 右边（包括i）是无序的
@@ -15,14 +15,14 @@ public class SelectSort {
                     int t = array[i];
                     array[i] = array[j];
                     array[j] = t;
-                    System.out.println("Sorting:  " + Arrays.toString(array)+",比较次数:"+(++count));
+                    System.out.println("Sorting:  " + Arrays.toString(array) + ",比较次数:" + (++count));
                 }
             }
         }
     }
 
     public static void main(String[] args) {
-        int a[]={1,5,3,6,7,1,2,5};
+        int a[] = {1, 5, 3, 6, 7, 1, 2, 5};
         sort(a);
     }
 }

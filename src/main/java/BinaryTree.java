@@ -71,52 +71,53 @@ public class BinaryTree {
     }
 
     public int getdeep(Node node) {
-        if (node.lchild==null&&node.rchild==null)
+        if (node.lchild == null && node.rchild == null)
             return 1;
-        int left=0,right=0;
-        if (node.lchild!=null)
-            left=getdeep(node.lchild);
-        if (node.rchild!=null)
-            right=getdeep(node.rchild);
-        return left>right?left+1:right+1;
+        int left = 0, right = 0;
+        if (node.lchild != null)
+            left = getdeep(node.lchild);
+        if (node.rchild != null)
+            right = getdeep(node.rchild);
+        return left > right ? left + 1 : right + 1;
     }
 
     public List<Node> result() {
         return list;
     }
 
-    public ArrayList wideprint(){
-        ArrayList lists=new ArrayList();
-        if (root==null){
+    public ArrayList wideprint() {
+        ArrayList lists = new ArrayList();
+        if (root == null) {
             return lists;
         }
-        Queue<Node> queue=new LinkedList();
+        Queue<Node> queue = new LinkedList();
         queue.offer(root);
-        while (!queue.isEmpty()){
-            Node tree=queue.poll();
-            if (tree.lchild!=null){
+        while (!queue.isEmpty()) {
+            Node tree = queue.poll();
+            if (tree.lchild != null) {
                 queue.offer(tree.lchild);
             }
-            if (tree.rchild!=null){
+            if (tree.rchild != null) {
                 queue.offer(tree.rchild);
             }
             lists.add(tree.data);
         }
         return lists;
     }
-    public ArrayList deepprint(){
-        ArrayList lists=new ArrayList();
-        if (root==null){
+
+    public ArrayList deepprint() {
+        ArrayList lists = new ArrayList();
+        if (root == null) {
             return lists;
         }
-        Stack<Node> stack=new Stack();
+        Stack<Node> stack = new Stack();
         stack.push(root);
-        while (!stack.isEmpty()){
-            Node tree=stack.pop();
-            if (tree.rchild!=null){
+        while (!stack.isEmpty()) {
+            Node tree = stack.pop();
+            if (tree.rchild != null) {
                 stack.push(tree.rchild);
             }
-            if (tree.lchild!=null){
+            if (tree.lchild != null) {
                 stack.push(tree.lchild);
             }
             lists.add(tree.data);
@@ -135,7 +136,7 @@ public class BinaryTree {
         }
         System.out.println();
         System.out.println("深度：" + binaryTree.getdeep(binaryTree.root));
-        System.out.println("广度优先："+binaryTree.wideprint());
-        System.out.println("深度优先："+binaryTree.deepprint());
+        System.out.println("广度优先：" + binaryTree.wideprint());
+        System.out.println("深度优先：" + binaryTree.deepprint());
     }
 }

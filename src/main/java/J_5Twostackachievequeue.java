@@ -9,11 +9,11 @@ public class J_5Twostackachievequeue {
     }
 
     public int pop() {
-        if(stack1.empty()&&stack2.empty()){
+        if (stack1.empty() && stack2.empty()) {
             throw new RuntimeException("Queue is empty!");
         }
-        if(stack2.empty()){
-            while(!stack1.empty()){
+        if (stack2.empty()) {
+            while (!stack1.empty()) {
                 stack2.push(stack1.pop());
             }
         }

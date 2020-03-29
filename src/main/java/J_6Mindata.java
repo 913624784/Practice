@@ -1,6 +1,7 @@
 public class J_6Mindata {
-    public int minNumberInRotateArray(int [] array) {
-        int low = 0 ; int high = array.length - 1;
+    public int minNumberInRotateArray(int[] array) {
+        int low = 0;
+        int high = array.length - 1;
 //        while(low < high){
 //            int mid = low + (high - low) / 2;
 //            if(array[mid] > array[high]){

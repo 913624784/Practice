@@ -1,13 +1,15 @@
 package leetcode;
 
 public class 判断链表是否有环 {
-    public class ListNode{
+    public class ListNode {
         int val;
-        ListNode next=null;
-        ListNode(int val){
-            this.val=val;
+        ListNode next = null;
+
+        ListNode(int val) {
+            this.val = val;
         }
     }
+
     public boolean hasCycle(ListNode head) {
         if (head == null) {
             return false;

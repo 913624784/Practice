@@ -160,7 +160,7 @@ public class charall {
 
     public static void main(String[] args) {
         String s = "(((3+4)*5)/7-6+1*5+1000)*2";
-        String ss="3+4*5+9/3+5+9";
+        String ss = "3+4*5+9/3+5+9";
         find(s);
         find(ss);
     }

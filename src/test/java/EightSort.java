@@ -50,15 +50,15 @@ public class EightSort {
     @Test
     public void testmergesort() {
         System.out.println("排序前：" + Arrays.toString(array));
-        mergesort(array,0,array.length-1,new int[array.length]);
+        mergesort(array, 0, array.length - 1, new int[array.length]);
         System.out.println(Arrays.toString(array));
     }
 
     @Test
     public void testquicksort() {
         System.out.println("排序前：" + Arrays.toString(array));
-        quicksort(array,0,array.length-1);
-        System.out.println("快排：" + Arrays.toString(array)+"\n");
+        quicksort(array, 0, array.length - 1);
+        System.out.println("快排：" + Arrays.toString(array) + "\n");
     }
 
     /**
@@ -78,7 +78,7 @@ public class EightSort {
             }
             swap(arr, min, i);
         }
-        System.out.println("选择：" + Arrays.toString(arr)+"\n");
+        System.out.println("选择：" + Arrays.toString(arr) + "\n");
     }
 
     /**
@@ -100,7 +100,7 @@ public class EightSort {
                 }
             }
         }
-        System.out.println("冒泡：" + Arrays.toString(arr)+"\n");
+        System.out.println("冒泡：" + Arrays.toString(arr) + "\n");
     }
 
     /**
@@ -115,7 +115,7 @@ public class EightSort {
                 swap(arr, j, j - 1);
             }
         }
-        System.out.println("插入：" + Arrays.toString(arr)+"\n");
+        System.out.println("插入：" + Arrays.toString(arr) + "\n");
     }
 
     /**
@@ -137,7 +137,7 @@ public class EightSort {
             }
             h = h / 3;
         }
-        System.out.println("希尔：" + Arrays.toString(arr)+"\n");
+        System.out.println("希尔：" + Arrays.toString(arr) + "\n");
     }
 
     /**
@@ -173,33 +173,34 @@ public class EightSort {
 
     }
 
-    public void mergesort(int[] arr,int left,int right,int []temp) {
-        if (left<right){
-            int mid=left+(right-left)/2;
-            mergesort(arr,left,mid,temp);
-            mergesort(arr,mid+1,right,temp);
-            merge(arr,left,mid,right,temp);
+    public void mergesort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+            mergesort(arr, left, mid, temp);
+            mergesort(arr, mid + 1, right, temp);
+            merge(arr, left, mid, right, temp);
         }
     }
-    public void merge(int[] arr,int left,int mid,int right,int []temp){
+
+    public void merge(int[] arr, int left, int mid, int right, int[] temp) {
         int i = left;
-        int j = mid+1;
+        int j = mid + 1;
         int t = 0;
-        while (i<=mid && j<=right){
-            if(arr[i]<=arr[j]){
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
                 temp[t++] = arr[i++];
-            }else {
+            } else {
                 temp[t++] = arr[j++];
             }
         }
-        while(i<=mid){
+        while (i <= mid) {
             temp[t++] = arr[i++];
         }
-        while(j<=right){
+        while (j <= right) {
             temp[t++] = arr[j++];
         }
         t = 0;
-        while(left <= right){
+        while (left <= right) {
             arr[left++] = temp[t++];
         }
     }
